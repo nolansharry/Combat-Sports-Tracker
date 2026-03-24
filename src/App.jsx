@@ -5,7 +5,11 @@ import Nav        from "./components/Nav";
 import TimerPage  from "./pages/TimerPage";
 import LogPage    from "./pages/LogPage";
 import SavedPage  from "./pages/SavedPage";
+import BannerAd   from "./components/BannerAd";
 import "./styles.css";
+
+import { AdMob } from '@capacitor-community/admob';
+import { Capacitor } from '@capacitor/core';
 
 export default function App() {
   const [user,               setUser]               = useState(null);
@@ -15,6 +19,16 @@ export default function App() {
   const [loadedTimer,        setLoadedTimer]        = useState(null);
   const [showSignOutConfirm, setShowSignOutConfirm] = useState(false);
 
+  // Initialize AdMob
+  useEffect(() => {
+    if (Capacitor.isNativePlatform()) {
+      AdMob.initialize({
+        initializeForTesting: true, // set to false before publishing
+      });
+    }
+  }, []);
+
+  // Restore session on mount
   useEffect(() => {
     const email = getSession();
     if (email) {
@@ -69,7 +83,7 @@ export default function App() {
     <div className="app-shell">
       <header className="top-bar">
         <span className="brand-icon small">⚡</span>
-        <span className="brand-name small">COMBAT SPORTS TRACKER</span>
+        <span className="brand-name small">IRONLOG</span>
         <span className="user-name">{user.name}</span>
         <div className="signout-wrap">
           {showSignOutConfirm ? (
@@ -91,6 +105,7 @@ export default function App() {
       </main>
 
       <Nav page={page} setPage={setPage} />
+      <BannerAd />
     </div>
   );
 }
