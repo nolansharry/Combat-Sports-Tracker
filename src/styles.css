@@ -1,0 +1,256 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@400;500;600&display=swap');
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg:      #0e0f11;
+  --surface: #181a1e;
+  --surface2:#222428;
+  --border:  #2e3036;
+  --text:    #e8e9eb;
+  --muted:   #7a7d85;
+  --accent:  #e8a000;
+  --red:     #e0420a;
+  --radius:  12px;
+  --nav-h:   72px;
+  --top-h:   54px;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Barlow', sans-serif;
+  min-height: 100dvh;
+  overscroll-behavior: none;
+}
+
+/* ── Auth ──────────────────────────────────────────────────── */
+.auth-wrap {
+  min-height: 100dvh; display: flex; align-items: center; justify-content: center;
+  background: radial-gradient(ellipse at 60% 40%, #1a1200 0%, #0e0f11 70%);
+  padding: 24px;
+}
+.auth-card {
+  background: var(--surface); border: 1px solid var(--border); border-radius: 20px;
+  padding: 40px 32px; width: 100%; max-width: 380px;
+  display: flex; flex-direction: column; gap: 16px;
+}
+.auth-brand { display: flex; align-items: center; gap: 10px; justify-content: center; }
+.brand-icon { font-size: 2rem; }
+.brand-name { font-family: 'Barlow Condensed', sans-serif; font-size: 2rem; font-weight: 800; letter-spacing: 4px; color: var(--accent); text-align: center; }
+.auth-sub   { text-align: center; color: var(--muted); font-size: 0.82rem; letter-spacing: 1px; text-transform: uppercase; }
+.auth-tabs  { display: flex; background: var(--surface2); border-radius: 8px; overflow: hidden; border: 1px solid var(--border); }
+.auth-tabs button {
+  flex: 1; padding: 10px; border: none; background: none; color: var(--muted);
+  font-family: 'Barlow Condensed', sans-serif; font-size: 0.95rem; font-weight: 600;
+  letter-spacing: 1px; cursor: pointer; transition: all 0.2s; text-transform: uppercase;
+}
+.auth-tabs button.active { background: var(--accent); color: #000; }
+.auth-input {
+  background: var(--surface2); border: 1px solid var(--border); border-radius: 8px;
+  padding: 14px 16px; color: var(--text); font-family: 'Barlow', sans-serif;
+  font-size: 0.95rem; outline: none; transition: border-color 0.2s; width: 100%;
+}
+.auth-input:focus        { border-color: var(--accent); }
+.auth-input::placeholder { color: var(--muted); }
+.auth-err { color: var(--red); font-size: 0.85rem; }
+.auth-btn {
+  padding: 15px; background: var(--accent); border: none; border-radius: 8px;
+  font-family: 'Barlow Condensed', sans-serif; font-size: 1.1rem; font-weight: 700;
+  letter-spacing: 2px; text-transform: uppercase; cursor: pointer; color: #000; transition: opacity 0.2s;
+}
+.auth-btn:hover { opacity: 0.88; }
+
+/* ── Shell ─────────────────────────────────────────────────── */
+.app-shell { display: flex; flex-direction: column; min-height: 100dvh; max-width: 480px; margin: 0 auto; position: relative; }
+.top-bar {
+  position: sticky; top: 0; z-index: 50; height: var(--top-h);
+  background: var(--surface); border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; gap: 8px; padding: 0 12px 0 20px;
+}
+.brand-icon.small { font-size: 1.2rem; }
+.brand-name.small { font-family: 'Barlow Condensed', sans-serif; font-size: 1.3rem; font-weight: 800; letter-spacing: 3px; color: var(--accent); flex: 1; }
+.user-name { font-size: 0.78rem; color: var(--muted); white-space: nowrap; max-width: 90px; overflow: hidden; text-overflow: ellipsis; }
+.main-content { flex: 1; overflow-y: auto; padding-bottom: calc(var(--nav-h) + 16px); }
+
+/* ── Sign Out ──────────────────────────────────────────────── */
+.signout-wrap { display: flex; align-items: center; margin-left: 6px; flex-shrink: 0; }
+.signout-btn {
+  background: var(--surface2); border: 1px solid var(--border); border-radius: 7px;
+  color: var(--muted); cursor: pointer; padding: 5px 10px;
+  font-family: 'Barlow Condensed', sans-serif; font-size: 0.9rem; font-weight: 700;
+  letter-spacing: 1px; transition: color 0.2s, border-color 0.2s;
+}
+.signout-btn:hover { color: var(--red); border-color: var(--red); }
+.signout-confirm {
+  display: flex; align-items: center; gap: 5px;
+  background: var(--surface2); border: 1px solid var(--red);
+  border-radius: 8px; padding: 5px 8px; animation: fadeIn 0.15s ease;
+}
+@keyframes fadeIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
+.signout-confirm-txt { font-size: 0.75rem; color: var(--muted); white-space: nowrap; }
+.signout-yes {
+  background: var(--red); border: none; border-radius: 5px; color: #fff;
+  font-family: 'Barlow Condensed', sans-serif; font-size: 0.8rem; font-weight: 700; padding: 4px 8px; cursor: pointer;
+}
+.signout-no {
+  background: var(--surface); border: 1px solid var(--border); border-radius: 5px;
+  color: var(--muted); font-family: 'Barlow Condensed', sans-serif; font-size: 0.8rem; font-weight: 700; padding: 4px 8px; cursor: pointer;
+}
+
+/* ── Nav ───────────────────────────────────────────────────── */
+.bottom-nav {
+  position: fixed; bottom: 0; left: 50%; transform: translateX(-50%);
+  width: 100%; max-width: 480px; height: var(--nav-h);
+  background: var(--surface); border-top: 1px solid var(--border);
+  display: flex; align-items: center; z-index: 100;
+}
+.nav-btn {
+  flex: 1; display: flex; flex-direction: column; align-items: center;
+  gap: 4px; border: none; background: none; color: var(--muted);
+  font-family: 'Barlow', sans-serif; cursor: pointer; padding: 8px 0; transition: color 0.2s;
+}
+.nav-btn.active { color: var(--accent); }
+.nav-icon { font-size: 1.35rem; }
+.nav-lbl  { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.5px; text-transform: uppercase; }
+
+/* ── Pages ─────────────────────────────────────────────────── */
+.page       { padding: 20px 16px; }
+.page-title { font-family: 'Barlow Condensed', sans-serif; font-size: 1.7rem; font-weight: 800; text-align: center; letter-spacing: 2px; text-transform: uppercase; color: var(--accent); margin-bottom: 20px; }
+
+/* ── Loaded banner ─────────────────────────────────────────── */
+.loaded-banner {
+  background: color-mix(in srgb, #2ecc71 12%, transparent);
+  border: 1px solid #2ecc71; border-radius: 8px; padding: 10px 14px;
+  color: #2ecc71; font-size: 0.88rem; margin-bottom: 18px; animation: fadeIn 0.2s ease;
+}
+.loaded-banner strong { color: #fff; }
+
+/* ── Sport Grid ────────────────────────────────────────────── */
+.sport-grid { display: flex; gap: 8px; margin-bottom: 24px; overflow-x: auto; scrollbar-width: none; padding-bottom: 4px; justify-content: center; flex-wrap: wrap;}
+.sport-grid::-webkit-scrollbar { display: none; }
+.sport-btn {
+  flex-shrink: 0; display: flex; flex-direction: column; align-items: center; gap: 4px;
+  padding: 10px 14px; border-radius: var(--radius);
+  border: 1.5px solid var(--border); background: var(--surface2);
+  color: var(--muted); cursor: pointer; transition: all 0.2s; font-family: 'Barlow', sans-serif;
+}
+.sport-btn.active {
+  border-color: var(--sc, var(--accent));
+  background: color-mix(in srgb, var(--sc, var(--accent)) 14%, transparent);
+  color: var(--sc, var(--accent));
+}
+.sport-icon  { font-size: 1.3rem; }
+.sport-label { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.5px; text-transform: uppercase; white-space: nowrap; }
+
+/* ── Knobs ─────────────────────────────────────────────────── */
+.config-grid { display: flex; gap: 12px; margin-bottom: 28px; }
+.knob {
+  flex: 1; background: var(--surface2); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 14px 10px;
+  display: flex; flex-direction: column; align-items: center; gap: 10px;
+}
+.knob-label { font-size: 0.7rem; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; text-align: center; }
+.knob-row   { display: flex; align-items: center; gap: 8px; }
+.knob-btn {
+  width: 30px; height: 30px; border-radius: 50%; border: 1.5px solid var(--border);
+  background: var(--surface); color: var(--text); font-size: 1.1rem; cursor: pointer;
+  display: flex; align-items: center; justify-content: center; transition: background 0.15s;
+}
+.knob-btn:hover { background: var(--border); }
+.knob-val { font-family: 'Barlow Condensed', sans-serif; font-size: 1.6rem; font-weight: 700; min-width: 28px; text-align: center; }
+
+/* ── Timer Ring ────────────────────────────────────────────── */
+.timer-stage     { display: flex; flex-direction: column; align-items: center; gap: 28px; margin-bottom: 32px; }
+.timer-ring-wrap { position: relative; width: 220px; height: 220px; display: flex; align-items: center; justify-content: center; }
+.timer-ring      { position: absolute; inset: 0; width: 100%; height: 100%; transform: rotate(-90deg); }
+.ring-bg         { fill: none; stroke: var(--border); stroke-width: 8; }
+.ring-fg         { fill: none; stroke-width: 8; stroke-linecap: round; transform-origin: center; }
+.timer-inner     { position: relative; z-index: 2; display: flex; flex-direction: column; align-items: center; gap: 6px; }
+.timer-phase     { font-family: 'Barlow Condensed', sans-serif; font-size: 0.85rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; }
+.timer-time      { font-family: 'Barlow Condensed', sans-serif; font-size: 3.2rem; font-weight: 800; letter-spacing: -1px; line-height: 1; }
+.done-txt        { font-family: 'Barlow Condensed', sans-serif; font-size: 2rem; font-weight: 800; letter-spacing: 3px; color: #2ecc71; }
+.timer-controls  { display: flex; align-items: center; gap: 20px; }
+.ctrl-btn {
+  border: none; cursor: pointer; font-size: 1.4rem;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 50%; transition: transform 0.15s, opacity 0.15s;
+}
+.ctrl-btn:hover    { transform: scale(1.08); }
+.ctrl-btn:disabled { opacity: 0.35; cursor: not-allowed; }
+.ctrl-btn.reset    { width: 48px; height: 48px; background: var(--surface2); color: var(--muted); border: 1.5px solid var(--border); }
+.ctrl-btn.play     { width: 68px; height: 68px; color: #000; font-size: 1.8rem; font-weight: 700; }
+
+/* ── Save section ──────────────────────────────────────────── */
+.save-section { display: flex; gap: 10px; }
+.save-input {
+  flex: 1; background: var(--surface2); border: 1px solid var(--border);
+  border-radius: 8px; padding: 13px 14px; color: var(--text);
+  font-family: 'Barlow', sans-serif; font-size: 0.95rem; outline: none; transition: border-color 0.2s;
+}
+.save-input:focus        { border-color: var(--accent); }
+.save-input::placeholder { color: var(--muted); }
+.save-btn {
+  padding: 13px 20px; background: var(--accent); border: none; border-radius: 8px;
+  font-family: 'Barlow Condensed', sans-serif; font-size: 0.95rem; font-weight: 700;
+  letter-spacing: 1px; text-transform: uppercase; cursor: pointer; color: #000;
+  white-space: nowrap; transition: opacity 0.2s;
+}
+.save-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+.save-btn.full { width: 100%; font-size: 1.1rem; padding: 16px; margin-top: 4px; }
+
+/* ── Log Form ──────────────────────────────────────────────── */
+.log-form  { display: flex; flex-direction: column; gap: 12px; }
+.log-label { font-size: 0.75rem; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); }
+.log-input {
+  background: var(--surface2); border: 1px solid var(--border); border-radius: 8px;
+  padding: 14px 16px; color: var(--text); font-family: 'Barlow', sans-serif;
+  font-size: 0.95rem; outline: none; transition: border-color 0.2s; width: 100%;
+}
+.log-input:focus        { border-color: var(--accent); }
+.log-input::placeholder { color: var(--muted); }
+.log-textarea {
+  background: var(--surface2); border: 1px solid var(--border); border-radius: 8px;
+  padding: 14px 16px; color: var(--text); font-family: 'Barlow', sans-serif;
+  font-size: 0.95rem; outline: none; resize: vertical; min-height: 130px;
+  transition: border-color 0.2s; width: 100%; line-height: 1.6;
+}
+.log-textarea:focus        { border-color: var(--accent); }
+.log-textarea::placeholder { color: var(--muted); }
+
+/* ── Saved Page ────────────────────────────────────────────── */
+.saved-tabs { display: flex; background: var(--surface2); border-radius: 8px; border: 1px solid var(--border); margin-bottom: 20px; overflow: hidden; }
+.saved-tabs button {
+  flex: 1; padding: 11px; border: none; background: none; color: var(--muted);
+  font-family: 'Barlow Condensed', sans-serif; font-size: 1rem; font-weight: 600;
+  letter-spacing: 1px; cursor: pointer; transition: all 0.2s; text-transform: uppercase;
+  display: flex; align-items: center; justify-content: center; gap: 6px;
+}
+.saved-tabs button.active { background: var(--accent); color: #000; }
+.badge { background: rgba(0,0,0,0.25); border-radius: 20px; padding: 2px 7px; font-size: 0.75rem; font-weight: 700; }
+.saved-tabs button.active .badge { background: rgba(0,0,0,0.3); }
+.card-list { display: flex; flex-direction: column; gap: 12px; }
+.empty { color: var(--muted); text-align: center; padding: 48px 0; font-size: 0.9rem; }
+.record-card {
+  background: var(--surface2); border: 1px solid var(--border);
+  border-left: 3px solid var(--sc, var(--accent)); border-radius: var(--radius); padding: 16px;
+}
+.record-header     { display: flex; gap: 12px; align-items: flex-start; }
+.record-sport-icon { font-size: 1.6rem; flex-shrink: 0; }
+.record-title      { font-family: 'Barlow Condensed', sans-serif; font-size: 1.1rem; font-weight: 700; letter-spacing: 0.5px; color: var(--text); }
+.record-meta       { font-size: 0.78rem; color: var(--muted); margin-top: 3px; }
+.record-notes      { font-size: 0.88rem; color: var(--muted); margin-top: 12px; line-height: 1.6; border-top: 1px solid var(--border); padding-top: 12px; }
+.del-btn { border: none; background: none; color: var(--muted); cursor: pointer; font-size: 0.85rem; padding: 2px 6px; transition: color 0.2s; flex-shrink: 0; }
+.del-btn:hover { color: var(--red); }
+
+/* ── Load Timer Button ─────────────────────────────────────── */
+.load-timer-btn {
+  margin-top: 12px; width: 100%; padding: 10px;
+  background: color-mix(in srgb, var(--sc, var(--accent)) 15%, transparent);
+  border: 1.5px solid var(--sc, var(--accent)); border-radius: 8px;
+  color: var(--sc, var(--accent)); font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.95rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase;
+  cursor: pointer; transition: background 0.2s, transform 0.1s;
+}
+.load-timer-btn:hover  { background: color-mix(in srgb, var(--sc, var(--accent)) 28%, transparent); transform: translateY(-1px); }
+.load-timer-btn:active { transform: translateY(0); }
